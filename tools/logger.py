@@ -158,21 +158,21 @@ class EnhancedLogger:
         msg = f"Starting {module_name} installation"
         if version:
             msg += f" (version: {version})"
-        self.info(msg, module=module_name, action="start", version=version)
+        self.info(msg, module_name=module_name, action="start", version=version)
 
     def log_module_success(self, module_name, details=None):
         """Log successful module installation"""
         msg = f"Successfully installed {module_name}"
         if details:
             msg += f" - {details}"
-        self.info(msg, module=module_name, action="success", details=details)
+        self.info(msg, module_name=module_name, action="success", details=details)
 
     def log_module_error(self, module_name, error, details=None):
         """Log module installation error"""
         msg = f"Failed to install {module_name}: {error}"
         if details:
             msg += f" - {details}"
-        self.error(msg, module=module_name, action="error", error=str(error), details=details)
+        self.error(msg, module_name=module_name, action="error", error=str(error), details=details)
 
     def log_download_start(self, url, filename):
         """Log download start"""
@@ -299,6 +299,10 @@ class JsonFormatter(logging.Formatter):
                               'process', 'getMessage', 'exc_info', 'exc_text', 'stack_info',
                               'message', 'args']:
                     log_entry[key] = value
+        
+        # Handle custom module_name field
+        if hasattr(record, 'module_name'):
+            log_entry['module_name'] = record.module_name
 
         # Add exception info if present
         if record.exc_info:

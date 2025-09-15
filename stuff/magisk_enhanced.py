@@ -167,8 +167,19 @@ echo "All modules installation completed"
             os.makedirs(self.extract_to)
         
         # Extract APK (which is actually a ZIP file)
-        with zipfile.ZipFile(self.dl_file_name) as z:
-            z.extractall(self.extract_to)
+        try:
+            with zipfile.ZipFile(self.dl_file_name, 'r') as z:
+                z.extractall(self.extract_to)
+        except zipfile.BadZipFile:
+            # Try with different compression methods
+            print_color("Standard extraction failed, trying alternative method...", bcolors.YELLOW)
+            try:
+                with zipfile.ZipFile(self.dl_file_name, 'r', zipfile.ZIP_DEFLATED) as z:
+                    z.extractall(self.extract_to)
+            except zipfile.BadZipFile:
+                # Use unzip command as fallback
+                print_color("Using unzip command as fallback...", bcolors.YELLOW)
+                run(["unzip", "-q", self.dl_file_name, "-d", self.extract_to])
 
     def copy(self):
         if os.path.exists(self.copy_dir):

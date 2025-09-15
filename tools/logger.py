@@ -5,7 +5,18 @@ import json
 import traceback
 from datetime import datetime
 from pathlib import Path
-from tools.helper import bcolors
+
+# Define bcolors locally since tools.helper does not exist
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class EnhancedLogger:
     """Enhanced logging system for ReDroid Enhanced script"""
@@ -248,10 +259,10 @@ class ColoredConsoleHandler(logging.StreamHandler):
 
     COLORS = {
         'DEBUG': bcolors.ENDC,
-        'INFO': bcolors.GREEN,
-        'WARNING': bcolors.YELLOW,
-        'ERROR': bcolors.RED,
-        'CRITICAL': bcolors.RED
+        'INFO': bcolors.OKGREEN,
+        'WARNING': bcolors.WARNING,
+        'ERROR': bcolors.FAIL,
+        'CRITICAL': bcolors.FAIL
     }
 
     def emit(self, record):

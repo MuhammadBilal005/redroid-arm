@@ -3,7 +3,7 @@
 import os
 import subprocess
 import sys
-from tools.helper import print_color, bcolors
+from tools.enhanced_helper import print_color, bcolors
 
 def test_dependencies():
     """Test if all required dependencies are available"""

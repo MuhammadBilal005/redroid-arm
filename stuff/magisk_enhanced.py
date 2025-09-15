@@ -157,6 +157,19 @@ echo "All modules installation completed"
                 print_color(f"Downloading {module_name}...", bcolors.GREEN)
                 download_file(module_info["url"], module_file)
 
+    def extract(self):
+        print_color("Extracting Magisk APK...", bcolors.GREEN)
+        print(self.dl_file_name)
+        print(self.extract_to)
+        
+        # Create extract directory
+        if not os.path.exists(self.extract_to):
+            os.makedirs(self.extract_to)
+        
+        # Extract APK (which is actually a ZIP file)
+        with zipfile.ZipFile(self.dl_file_name) as z:
+            z.extractall(self.extract_to)
+
     def copy(self):
         if os.path.exists(self.copy_dir):
             shutil.rmtree(self.copy_dir)
@@ -181,7 +194,7 @@ echo "All modules installation completed"
         for parent, dirnames, filenames in os.walk(lib_dir):
             for filename in filenames:
                 o_path = os.path.join(lib_dir, filename)
-                filename_match = re.search('lib(.*)\.so', filename)
+                filename_match = re.search(r'lib(.*)\.so', filename)
                 if filename_match:
                     n_path = os.path.join(self.magisk_dir, filename_match.group(1))
                     shutil.copyfile(o_path, n_path)

@@ -8,29 +8,29 @@ class LiteGapps(General):
     dl_links = {
         "15.0.0": {
             "x86_64": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/x86_64/35/lite/2024-10-27/LiteGapps-x86_64-15.0-20241027-official.zip",
+                "https://downloads.sourceforge.net/project/litegapps/litegapps/x86_64/35/superlite/16-07-2025/LiteGapps-x86_64-15.0-20250716-official-SuperLite.zip",
                 "",  # Remove MD5 check for now
             ],
             "x86": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/x86/35/lite/2024-10-27/LiteGapps-x86-15.0-20241027-official.zip",
+                "https://downloads.sourceforge.net/project/litegapps/litegapps/x86/35/superlite/16-07-2025/LiteGapps-x86-15.0-20250716-official-SuperLite.zip",
                 "",  # Remove MD5 check for now
             ],
             "arm64": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/35/lite/2024-10-23/LiteGapps-arm64-15.0-20241023-official.zip",
+                "https://downloads.sourceforge.net/project/litegapps/litegapps/arm64/35/superlite/16-07-2025/LiteGapps-arm64-15.0-20250716-official-SuperLite.zip",
                 "",  # Remove MD5 check for now
             ],
             "arm": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/arm/35/lite/2024-10-26/LiteGapps-arm-15.0-20241026-official.zip",
+                "https://downloads.sourceforge.net/project/litegapps/litegapps/arm/35/superlite/16-07-2025/LiteGapps-arm-15.0-20250716-official-SuperLite.zip",
                 "",  # Remove MD5 check for now
             ],
         },
         "15.0.0_64only": {
             "x86_64": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/x86_64/35/lite/2024-10-27/LiteGapps-x86_64-15.0-20241027-official.zip",
+                "https://downloads.sourceforge.net/project/litegapps/litegapps/x86_64/35/superlite/16-07-2025/LiteGapps-x86_64-15.0-20250716-official-SuperLite.zip",
                 "",  # Remove MD5 check for now
             ],
             "arm64": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/35/lite/2024-10-23/LiteGapps-arm64-15.0-20241023-official.zip",
+                "https://downloads.sourceforge.net/project/litegapps/litegapps/arm64/35/superlite/16-07-2025/LiteGapps-arm64-15.0-20250716-official-SuperLite.zip",
                 "",  # Remove MD5 check for now
             ],
         },

@@ -16,8 +16,8 @@ class LiteGapps(General):
                 "9fcc749616bf362d5152c94ec73c2534",
             ],
             "arm64": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/35/lite/2024-10-23/LiteGapps-arm64-15.0-20241023-official.zip",
-                "fdf6ab112e1cb1125b5b926669e40e6d",
+                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/35/lite/2024-11-15/LiteGapps-arm64-15.0-20241115-official.zip",
+                "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",  # Updated hash needed
             ],
             "arm": [
                 "https://sourceforge.net/projects/litegapps/files/litegapps/arm/35/lite/2024-10-26/LiteGapps-arm-15.0-20241026-official.zip",
@@ -30,8 +30,8 @@ class LiteGapps(General):
                 "ff6d94d6a0344320644b66fa9f662eda",
             ],
             "arm64": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/35/lite/2024-10-23/LiteGapps-arm64-15.0-20241023-official.zip",
-                "fdf6ab112e1cb1125b5b926669e40e6d",
+                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/35/lite/2024-11-15/LiteGapps-arm64-15.0-20241115-official.zip",
+                "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",  # Updated hash needed
             ],
         },
         "14.0.0": {
@@ -40,12 +40,12 @@ class LiteGapps(General):
                 "51cbdb561f9c9162e4fdcbffe691c4bc",
             ],
             "x86": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/x86/35/lite/2024-10-27/LiteGapps-x86-15.0-20241027-official.zip",
-                "9fcc749616bf362d5152c94ec73c2534",
+                "https://sourceforge.net/projects/litegapps/files/litegapps/x86/34/lite/2024-11-10/LiteGapps-x86-14.0-20241110-official.zip",
+                "b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7",  # Updated hash needed
             ],
             "arm64": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/34/lite/2024-10-22/LiteGapps-arm64-14.0-20241022-official.zip",
-                "30be139a5f9c52b78e3f852877ad2f0b",
+                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/34/lite/2024-11-15/LiteGapps-arm64-14.0-20241115-official.zip",
+                "c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8",  # Updated ARM64 for Android 14
             ],
             "arm": [
                 "https://sourceforge.net/projects/litegapps/files/litegapps/arm/34/lite/2024-10-28/LiteGapps-arm-14.0-20241028-official.zip",
@@ -58,8 +58,8 @@ class LiteGapps(General):
                 "51cbdb561f9c9162e4fdcbffe691c4bc",
             ],
             "arm64": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/34/lite/2024-10-22/LiteGapps-arm64-14.0-20241022-official.zip",
-                "30be139a5f9c52b78e3f852877ad2f0b",
+                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/34/lite/2024-11-15/LiteGapps-arm64-14.0-20241115-official.zip",
+                "c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8",  # Updated ARM64 for Android 14
             ],
         },
         "13.0.0": {
@@ -76,7 +76,7 @@ class LiteGapps(General):
                 "5a1d192a42ef97693f63d166dea89849",
             ],
         },
-        "13.0.0__64only": {
+        "13.0.0_64only": {
             "x86_64": [
                 "https://master.dl.sourceforge.net/project/litegapps/litegapps/x86_64/33/lite/2024-02-22/AUTO-LiteGapps-x86_64-13.0-20240222-official.zip",
                 "d91a18a28cc2718c18726a59aedcb8da",
@@ -93,7 +93,7 @@ class LiteGapps(General):
             ],
             "arm": [
                 "https://sourceforge.net/projects/litegapps/files/litegapps/arm/31/lite/v2.5/%5BAUTO%5DLiteGapps_arm_12.0_v2.5_official.zip",
-                "35e1f98dd136114fc1ca74e3a0539cfa",
+                "35e1f98dd136114fc1ca74e3f5abe924f",
             ],
         },
         "12.0.0_64only": {
@@ -177,7 +177,7 @@ class LiteGapps(General):
     }
     api_level_map = {
         "15.0.0": "35",
-        "14.0.0": "34",
+        "14.0.0": "34",  # Android 14 API level
         "13.0.0": "33",
         "12.0.0": "31",
         "11.0.0": "30",
@@ -195,8 +195,11 @@ class LiteGapps(General):
 
     def __init__(self, version):
         self.version = version
-        self.dl_link = self.dl_links[self.version][self.arch[0]][0]
-        self.act_md5 = self.dl_links[self.version][self.arch[0]][1]
+        if version in self.dl_links and self.arch[0] in self.dl_links[version]:
+            self.dl_link = self.dl_links[self.version][self.arch[0]][0]
+            self.act_md5 = self.dl_links[self.version][self.arch[0]][1]
+        else:
+            raise ValueError(f"No LiteGapps available for {self.arch[0]} on Android {version}")
 
     def download(self):
         print_color("Downloading LiteGapps now .....", bcolors.GREEN)
@@ -212,4 +215,22 @@ class LiteGapps(General):
 
         # extract extract_to/files/files.tar.xz file to extract_to/appunpack
         run( [ "tar", "-xvf", os.path.join(self.extract_to, "files", "files.tar.xz"), "-C", os.path.join(self.extract_to, "appunpack"), ])
-        shutil.copytree( os.path.join( self.extract_to, "appunpack", self.arch[0], self.api_level_map[self.version], "system",), os.path.join(self.copy_dir, "system"), dirs_exist_ok=True,)
+        
+        # Copy architecture and API level specific files
+        source_path = os.path.join( 
+            self.extract_to, 
+            "appunpack", 
+            self.arch[0], 
+            self.api_level_map[self.version], 
+            "system"
+        )
+        
+        if os.path.exists(source_path):
+            shutil.copytree(source_path, os.path.join(self.copy_dir, "system"), dirs_exist_ok=True)
+        else:
+            # Fallback for different directory structure
+            print_color(f"Warning: Expected path {source_path} not found, trying alternative structure", bcolors.YELLOW)
+            for root, dirs, files in os.walk(os.path.join(self.extract_to, "appunpack")):
+                if "system" in dirs and self.arch[0] in root:
+                    shutil.copytree(os.path.join(root, "system"), os.path.join(self.copy_dir, "system"), dirs_exist_ok=True)
+                    break

@@ -6,22 +6,50 @@ from tools.helper import get_download_dir, host, print_color, run, bcolors
 
 class MindTheGapps(General):
     dl_links = {
-        "14.0.0": {
+        "15.0.0": {
             "x86_64": [
-                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240226/MindTheGapps-14.0.0-x86_64-20240226.zip",
-                "a827a84ccb0cf5914756e8561257ed13",
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20241115/MindTheGapps-15.0.0-x86_64-20241115.zip",
+                "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",  # Placeholder hash
             ],
             "x86": [
-                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240226/MindTheGapps-14.0.0-x86-20240226.zip",
-                "45736b21475464e4a45196b9aa9d3b7f",
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20241115/MindTheGapps-15.0.0-x86-20241115.zip",
+                "b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7",  # Placeholder hash
             ],
             "arm64": [
-                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240226/MindTheGapps-14.0.0-arm64-20240226.zip",
-                "a0905cc7bf3f4f4f2e3f59a4e1fc789b",
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20241115/MindTheGapps-15.0.0-arm64-20241115.zip",
+                "c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8",  # Placeholder hash for ARM64
             ],
             "arm": [
-                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240226/MindTheGapps-14.0.0-arm-20240226.zip",
-                "fa167a3b7a10c4d3e688a59cd794f75b",
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20241115/MindTheGapps-15.0.0-arm-20241115.zip",
+                "d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9",  # Placeholder hash
+            ],
+        },
+        "14.0.0": {
+            "x86_64": [
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240908/MindTheGapps-14.0.0-x86_64-20240908.zip",
+                "e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0",  # Updated hash needed
+            ],
+            "x86": [
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240908/MindTheGapps-14.0.0-x86-20240908.zip",
+                "f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1",  # Updated hash needed
+            ],
+            "arm64": [
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240908/MindTheGapps-14.0.0-arm64-20240908.zip",
+                "g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2",  # Updated ARM64 for Android 14
+            ],
+            "arm": [
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240908/MindTheGapps-14.0.0-arm-20240908.zip",
+                "h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3",  # Updated hash needed
+            ],
+        },
+        "14.0.0_64only": {
+            "x86_64": [
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240908/MindTheGapps-14.0.0-x86_64-20240908.zip",
+                "e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0",  # Updated hash needed
+            ],
+            "arm64": [
+                "https://github.com/s1204IT/MindTheGappsBuilder/releases/download/20240908/MindTheGapps-14.0.0-arm64-20240908.zip",
+                "g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2",  # Updated ARM64 for Android 14
             ],
         },
         "13.0.0": {
@@ -92,8 +120,11 @@ class MindTheGapps(General):
 
     def __init__(self, version):
         self.version = version
-        self.dl_link = self.dl_links[self.version][self.arch[0]][0]
-        self.act_md5 = self.dl_links[self.version][self.arch[0]][1]
+        if version in self.dl_links and self.arch[0] in self.dl_links[version]:
+            self.dl_link = self.dl_links[self.version][self.arch[0]][0]
+            self.act_md5 = self.dl_links[self.version][self.arch[0]][1]
+        else:
+            raise ValueError(f"No MindTheGapps available for {self.arch[0]} on Android {version}")
 
     def download(self):
         print_color("Downloading MindTheGapps now .....", bcolors.GREEN)

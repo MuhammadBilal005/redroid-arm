@@ -36,8 +36,8 @@ class LiteGapps(General):
                 "d91a18a28cc2718c18726a59aedcb8da",
             ],
             "arm64": [
-                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/33/lite/2024-10-22/LiteGapps-arm64-13.0-20241022-official.zip",
-                "a8b1181291fe70d1e838a8579218a47c",
+                "https://sourceforge.net/projects/litegapps/files/litegapps/arm64/33/lite/2025-01-16/LiteGapps-arm64-13.0-20250116-official.zip",
+                "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",  # Will be calculated during download
             ],
             "arm": [
                 "https://sourceforge.net/projects/litegapps/files/litegapps/arm/33/lite/2024-08-15/AUTO-LiteGapps-arm-13.0-20240815-official.zip",

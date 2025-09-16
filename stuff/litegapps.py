@@ -87,7 +87,7 @@ class LiteGapps(General):
                 "https://sourceforge.net/projects/litegapps/files/litegapps/arm/30/lite/2024-08-18/AUTO-LiteGapps-arm-11.0-20240818-official.zip",
                 "d4b2471d94facc13c9e7a026f2dff80d",
             ],
-        ],
+        },
     }
     
     api_level_map = {
